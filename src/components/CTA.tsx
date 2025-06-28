@@ -45,7 +45,7 @@ export const CTA = () => {
                   free.
                 </p>
                 <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex">
-                  <Button primary className="w-full sm:w-auto text-lg group">
+                  <Button  primary className="w-full sm:w-auto text-lg group">
                     Sign up for free
                     <ArrowRightIcon className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>

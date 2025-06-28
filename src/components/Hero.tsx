@@ -2,17 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { Button } from './Button'
 import { AnimatedWords } from './AnimatedText'
 import { ArrowRightIcon, MessageCircleIcon } from 'lucide-react'
+
 export const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false)
+
   useEffect(() => {
     setIsLoaded(true)
   }, [])
+
   return (
     <section className="relative min-h-screen flex items-center px-4 sm:px-6 lg:px-8 py-24">
       <div className="max-w-7xl mx-auto w-full">
         <div className="text-center">
           <div
-            className={`inline-block mb-6 p-2 px-4 bg-indigo-100 rounded-full text-indigo-700 transition-all duration-1000 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`inline-block mb-6 p-2 px-4 bg-indigo-100 rounded-full text-indigo-700 transition-all duration-1000 transform ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
           >
             <div className="flex items-center space-x-2">
               <MessageCircleIcon className="w-5 h-5" />
@@ -49,7 +54,7 @@ export const Hero = () => {
               animationDelay: '1s',
               animationFillMode: 'forwards',
             }}
-          >
+          ><a href="/sign-in">
             <Button
               primary
               className="flex items-center justify-center gap-2 text-lg px-8 py-4"
@@ -57,6 +62,7 @@ export const Hero = () => {
               Get Started
               <ArrowRightIcon className="w-5 h-5 ml-1 transition-transform group-hover:translate-x-1" />
             </Button>
+            </a>
             <Button className="text-lg px-8 py-4">Learn More</Button>
           </div>
         </div>

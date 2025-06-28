@@ -6,7 +6,7 @@ import { CTA } from '../components/CTA'
 
 import { Testimonials } from '../components/Testimonials'
 import { Footer } from '../components/Footer'
-import { ParticleBackground } from './components/ParticleBackground'
+import { ParticleBackground } from '../components/ParticleBackground'
 
 export function App() {
   return (

@@ -114,12 +114,14 @@ export function SignInForm() {
             </a>
           </div>
         </div>
+        <a href="/chatpage" className="block">
         <button
           type="submit"
           className="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         >
           Sign In
         </button>
+        </a>
       </form>
       <div className="mt-6 text-center">
         <p className="text-gray-300">

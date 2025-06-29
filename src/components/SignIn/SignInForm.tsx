@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import { useAuth } from '../../services/AuthProvider'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 export function SignInForm() {
   const [email, setEmail] = useState('')
@@ -108,12 +108,12 @@ export function SignInForm() {
       <div className="mt-6 text-center">
         <p className="text-gray-300">
           Don't have an account?{' '}
-          <a
-            href="/sign-up"
+          <Link
+            to="/sign-up"
             className="text-blue-400 hover:text-blue-300 font-medium hover:underline transition-all duration-300"
           >
             Sign Up
-          </a>
+          </Link>
         </p>
       </div>
     </div>

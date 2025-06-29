@@ -58,7 +58,7 @@ export const CTA = () => {
                   </a>
                 </div>
                 <p className="mt-4 text-sm text-gray-500">
-                  No credit card required. Cancel anytime.
+            
                 </p>
               </div>
             </div>
@@ -96,11 +96,11 @@ export const CTA = () => {
                   <div className="mt-4 flex items-center">
                     <div className="flex-shrink-0">
                       <div className="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-bold">
-                        JD
+                        KP
                       </div>
                     </div>
                     <div className="ml-3">
-                      <p className="font-medium">Jane Doe</p>
+                      <p className="font-medium">Kalana Perera</p>
                       <p className="text-sm opacity-75">Product Manager</p>
                     </div>
                   </div>

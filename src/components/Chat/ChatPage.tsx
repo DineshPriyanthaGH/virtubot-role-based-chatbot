@@ -100,7 +100,7 @@ const ChatPage: React.FC = () => {
     setIsThinking(true)
     setBotTypingText("")
 
-    // Send message text + attached file info to bot prompt
+
     let prompt = newMessage
     if (fileData) {
       prompt += `\n[Attached file: ${fileData.name}]`
@@ -172,7 +172,7 @@ const ChatPage: React.FC = () => {
           showChatCard ? "opacity-100 scale-100" : "opacity-0 scale-95"
         } z-10 overflow-hidden border border-blue-100`}
       >
-        {/* Header */}
+    
         <div className="bg-white shadow-sm p-4 flex justify-between items-center border-b border-gray-100">
           <div className="flex items-center">
             <div className="h-10 w-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
@@ -189,7 +189,6 @@ const ChatPage: React.FC = () => {
           </button>
         </div>
 
-        {/* Chat messages */}
         <div
           ref={chatContainerRef}
           className="flex-1 p-6 overflow-y-auto bg-gray-50"
@@ -280,10 +279,10 @@ const ChatPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Input area with clip icon on left */}
+       
         <div className="p-4 bg-white border-t border-gray-100">
           <div className="flex items-center space-x-2">
-            {/* File attach icon + hidden input */}
+           
             <label
               htmlFor="file-upload"
               className="cursor-pointer p-3 rounded-full bg-gray-200 hover:bg-gray-300 transition-all duration-300 transform hover:scale-110 flex items-center justify-center"
@@ -299,7 +298,7 @@ const ChatPage: React.FC = () => {
               className="hidden"
             />
 
-            {/* Textarea + filename */}
+        
             <div className="flex-1 relative flex items-center space-x-2">
               <textarea
                 value={newMessage}
@@ -316,7 +315,7 @@ const ChatPage: React.FC = () => {
               )}
             </div>
 
-            {/* Send button */}
+        
             <button
               onClick={handleSendMessage}
               disabled={!newMessage.trim() && !attachedFile}
@@ -328,7 +327,7 @@ const ChatPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Profile card */}
+    
       <div
         className={`fixed top-0 right-0 h-full w-80 bg-gradient-to-b from-white to-blue-50 shadow-2xl transform transition-all duration-500 ease-in-out ${
           showProfileCard ? "translate-x-0" : "translate-x-full"

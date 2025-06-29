@@ -1,3 +1,4 @@
+// src/components/SignUp/SignUpForm.tsx
 import React, { useState } from 'react'
 import {
   AtSignIcon,
@@ -6,6 +7,9 @@ import {
   LoaderIcon,
   UserIcon,
 } from 'lucide-react'
+import { useAuth } from '../../services/AuthProvider'
+import { useNavigate } from 'react-router-dom'
+
 interface FormData {
   fullName: string
   email: string
@@ -18,6 +22,7 @@ interface FormErrors {
   password?: string
   confirmPassword?: string
 }
+
 const SignUpForm = () => {
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
@@ -29,6 +34,11 @@ const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [firebaseError, setFirebaseError] = useState('')
+
+  const { signup } = useAuth()
+  const navigate = useNavigate()
+
   const validateForm = () => {
     const newErrors: FormErrors = {}
     if (!formData.fullName.trim()) {
@@ -49,13 +59,13 @@ const SignUpForm = () => {
     }
     return newErrors
   }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }))
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({
         ...prev,
@@ -63,27 +73,26 @@ const SignUpForm = () => {
       }))
     }
   }
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setFirebaseError('')
     const newErrors = validateForm()
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
       return
     }
-    // Simulate form submission
     setIsSubmitting(true)
-    setTimeout(() => {
+    try {
+      await signup(formData.email, formData.password)
+      navigate('/chatpage')
+    } catch (err: any) {
+      setFirebaseError(err.message || 'Failed to sign up')
+    } finally {
       setIsSubmitting(false)
-      alert('Sign up successful!')
-      // Reset form
-      setFormData({
-        fullName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      })
-    }, 1500)
+    }
   }
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -109,7 +118,9 @@ const SignUpForm = () => {
               value={formData.fullName}
               onChange={handleChange}
               placeholder="John Doe"
-              className={`block w-full pl-10 pr-3 py-2 rounded-md bg-slate-800 border ${errors.fullName ? 'border-red-500' : 'border-slate-700'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+              className={`block w-full pl-10 pr-3 py-2 rounded-md bg-slate-800 border ${
+                errors.fullName ? 'border-red-500' : 'border-slate-700'
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
             />
           </div>
           {errors.fullName && (
@@ -118,6 +129,7 @@ const SignUpForm = () => {
             </p>
           )}
         </div>
+
         {/* Email Input */}
         <div className="relative">
           <label
@@ -137,7 +149,9 @@ const SignUpForm = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="your@email.com"
-              className={`block w-full pl-10 pr-3 py-2 rounded-md bg-slate-800 border ${errors.email ? 'border-red-500' : 'border-slate-700'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+              className={`block w-full pl-10 pr-3 py-2 rounded-md bg-slate-800 border ${
+                errors.email ? 'border-red-500' : 'border-slate-700'
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
             />
           </div>
           {errors.email && (
@@ -146,6 +160,7 @@ const SignUpForm = () => {
             </p>
           )}
         </div>
+
         {/* Password Input */}
         <div className="relative">
           <label
@@ -162,7 +177,9 @@ const SignUpForm = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="••••••••"
-              className={`block w-full pl-3 pr-10 py-2 rounded-md bg-slate-800 border ${errors.password ? 'border-red-500' : 'border-slate-700'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+              className={`block w-full pl-3 pr-10 py-2 rounded-md bg-slate-800 border ${
+                errors.password ? 'border-red-500' : 'border-slate-700'
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
             />
             <button
               type="button"
@@ -188,6 +205,7 @@ const SignUpForm = () => {
             </p>
           )}
         </div>
+
         {/* Confirm Password Input */}
         <div className="relative">
           <label
@@ -204,7 +222,9 @@ const SignUpForm = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="••••••••"
-              className={`block w-full pl-3 pr-10 py-2 rounded-md bg-slate-800 border ${errors.confirmPassword ? 'border-red-500' : 'border-slate-700'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+              className={`block w-full pl-3 pr-10 py-2 rounded-md bg-slate-800 border ${
+                errors.confirmPassword ? 'border-red-500' : 'border-slate-700'
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
             />
             <button
               type="button"
@@ -233,6 +253,13 @@ const SignUpForm = () => {
             </p>
           )}
         </div>
+
+        {firebaseError && (
+          <div className="text-red-500 text-sm font-medium mt-2 animate-shake">
+            {firebaseError}
+          </div>
+        )}
+
         {/* Submit Button */}
         <div className="pt-2">
           <button
@@ -254,4 +281,5 @@ const SignUpForm = () => {
     </form>
   )
 }
+
 export default SignUpForm

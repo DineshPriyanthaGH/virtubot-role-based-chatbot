@@ -178,7 +178,7 @@ const ChatPage: React.FC = () => {
             <div className="h-10 w-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
               V
             </div>
-            <h1 className="ml-3 text-xl font-semibold">VirtuBot</h1>
+            <h1 className="ml-3 text-xl font-semibold">VirtuBot-Health Health Psychology Counselor</h1>
           </div>
           <button
             onClick={toggleProfileCard}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
+
 interface Testimonial {
   id: number
   content: string
@@ -6,65 +7,70 @@ interface Testimonial {
   title: string
   initials: string
 }
+
 const testimonials: Testimonial[] = [
   {
     id: 1,
     content:
-      'VirtuBot has been an incredible tool for my research. It helps me find information quickly and provides thoughtful insights on complex topics.',
-    name: 'Alex Johnson',
-    title: 'PhD Researcher',
-    initials: 'AJ',
+      'VirtuBot’s compassionate guidance has helped me manage anxiety and stress more effectively, providing support whenever I need it.',
+    name: 'Emily Carter',
+    title: 'Graduate Psychology Student',
+    initials: 'EC',
   },
   {
     id: 2,
     content:
-      "As a busy entrepreneur, I don't have time for extensive research. VirtuBot gives me concise, accurate information exactly when I need it.",
-    name: 'Sarah Chen',
-    title: 'Startup Founder',
-    initials: 'SC',
+      "As a therapist, I recommend VirtuBot to my clients for daily coping strategies and mental wellness check-ins.",
+    name: 'Dr. Mark Thompson',
+    title: 'Licensed Therapist',
+    initials: 'MT',
   },
   {
     id: 3,
     content:
-      'My students love using VirtuBot for their projects. It helps them explore ideas and get immediate feedback on their work.',
-    name: 'Michael Rodriguez',
-    title: 'University Professor',
-    initials: 'MR',
+      'VirtuBot is a great companion for emotional support, offering personalized advice that feels both professional and empathetic.',
+    name: 'Sophia Lee',
+    title: 'Mental Health Advocate',
+    initials: 'SL',
   },
   {
     id: 4,
     content:
-      "The personalized responses from VirtuBot make it feel like I'm chatting with a knowledgeable friend rather than an AI tool.",
-    name: 'Priya Patel',
-    title: 'Content Creator',
-    initials: 'PP',
+      'I use VirtuBot to help maintain mindfulness throughout my day and to gain insights into managing work-related stress.',
+    name: 'Jason Nguyen',
+    title: 'Corporate Wellness Coach',
+    initials: 'JN',
   },
   {
     id: 5,
     content:
-      'VirtuBot has dramatically improved my productivity. It helps me draft emails, summarize meetings, and organize my thoughts.',
-    name: 'David Wilson',
-    title: 'Project Manager',
-    initials: 'DW',
+      'The personalized conversations with VirtuBot have boosted my motivation and helped me develop healthier habits.',
+    name: 'Rachel Kim',
+    title: 'Health Psychology Researcher',
+    initials: 'RK',
   },
 ]
+
 export const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
+
   const nextTestimonial = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
   }
+
   const prevTestimonial = () => {
     setActiveIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + testimonials.length) % testimonials.length,
+      (prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length,
     )
   }
+
   const goToTestimonial = (index: number) => {
     setActiveIndex(index)
   }
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -74,9 +80,7 @@ export const Testimonials = () => {
           setIsVisible(false)
         }
       },
-      {
-        threshold: 0.1,
-      },
+      { threshold: 0.1 },
     )
     if (sectionRef.current) {
       observer.observe(sectionRef.current)
@@ -87,6 +91,7 @@ export const Testimonials = () => {
       }
     }
   }, [])
+
   useEffect(() => {
     if (isVisible) {
       intervalRef.current = setInterval(() => {
@@ -99,6 +104,7 @@ export const Testimonials = () => {
       }
     }
   }, [isVisible])
+
   return (
     <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
@@ -107,16 +113,14 @@ export const Testimonials = () => {
             What Our Users Say
           </h2>
           <p className="max-w-2xl mx-auto text-xl text-gray-600">
-            Real experiences from people using VirtuBot in their daily lives.
+            Real experiences from people improving their mental well-being with VirtuBot.
           </p>
         </div>
         <div className="relative max-w-4xl mx-auto">
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
-              style={{
-                transform: `translateX(-${activeIndex * 100}%)`,
-              }}
+              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
             >
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
@@ -126,15 +130,11 @@ export const Testimonials = () => {
                         {testimonial.initials}
                       </div>
                       <div className="ml-4">
-                        <h3 className="font-medium text-lg text-gray-900">
-                          {testimonial.name}
-                        </h3>
+                        <h3 className="font-medium text-lg text-gray-900">{testimonial.name}</h3>
                         <p className="text-gray-600">{testimonial.title}</p>
                       </div>
                     </div>
-                    <blockquote className="text-lg text-gray-700 italic">
-                      "{testimonial.content}"
-                    </blockquote>
+                    <blockquote className="text-lg text-gray-700 italic">"{testimonial.content}"</blockquote>
                     <div className="mt-4 flex">
                       {[...Array(5)].map((_, i) => (
                         <svg
@@ -155,37 +155,31 @@ export const Testimonials = () => {
           <button
             onClick={prevTestimonial}
             className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white rounded-full shadow-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-50 transition-colors"
+            aria-label="Previous testimonial"
           >
             <svg
               className="w-6 h-6 text-indigo-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
             onClick={nextTestimonial}
             className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white rounded-full shadow-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-50 transition-colors"
+            aria-label="Next testimonial"
           >
             <svg
               className="w-6 h-6 text-indigo-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
           <div className="flex justify-center mt-8">
@@ -193,7 +187,10 @@ export const Testimonials = () => {
               <button
                 key={index}
                 onClick={() => goToTestimonial(index)}
-                className={`w-3 h-3 mx-1 rounded-full focus:outline-none ${index === activeIndex ? 'bg-indigo-600' : 'bg-gray-300'}`}
+                className={`w-3 h-3 mx-1 rounded-full focus:outline-none ${
+                  index === activeIndex ? 'bg-indigo-600' : 'bg-gray-300'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>

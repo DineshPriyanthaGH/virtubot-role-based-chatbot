@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Button } from './Button'
 import { ArrowRightIcon } from 'lucide-react'
+
 export const CTA = () => {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -24,6 +26,7 @@ export const CTA = () => {
       }
     }
   }, [])
+
   return (
     <section
       ref={sectionRef}
@@ -31,35 +34,32 @@ export const CTA = () => {
     >
       <div className="max-w-7xl mx-auto">
         <div
-          className={`bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          className={`bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-1000 transform ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
         >
           <div className="lg:grid lg:grid-cols-2">
             <div className="py-12 px-6 sm:px-12 lg:py-16 lg:px-16 xl:py-20 xl:px-20">
               <div className="max-w-lg">
                 <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                  Ready to experience smarter conversations?
+                  Ready to start your journey to better mental well-being?
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
-                  Join thousands of users who are already benefiting from
-                  VirtuBot's personalized assistance. Get started today for
-                  free.
+                  Join thousands who trust VirtuBot, your compassionate health psychology counselor. Experience personalized guidance and support tailored just for you.
                 </p>
                 <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex">
                   <a href="/sign-up">
                     <Button primary className="w-full sm:w-auto text-lg group">
-                      Sign up for free
+                      Get Started for Free
                       <ArrowRightIcon className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </a>
                   <a href="/demo">
                     <Button className="w-full sm:w-auto text-lg">
-                      Schedule a demo
+                      Schedule a Demo
                     </Button>
                   </a>
                 </div>
-                <p className="mt-4 text-sm text-gray-500">
-            
-                </p>
               </div>
             </div>
             <div className="relative">
@@ -83,25 +83,21 @@ export const CTA = () => {
                       </svg>
                     </div>
                     <div className="ml-4">
-                      <h3 className="font-bold text-xl">
-                        What users are saying
-                      </h3>
+                      <h3 className="font-bold text-xl">What users are saying</h3>
                     </div>
                   </div>
                   <blockquote className="italic">
-                    "VirtuBot has completely transformed how I manage my daily
-                    tasks. The personalized assistance is like having a personal
-                    assistant available 24/7!"
+                    "VirtuBot’s compassionate counseling has helped me cope with stress and anxiety. It’s like having a trusted guide available anytime I need support."
                   </blockquote>
                   <div className="mt-4 flex items-center">
                     <div className="flex-shrink-0">
                       <div className="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-bold">
-                        KP
+                        AS
                       </div>
                     </div>
                     <div className="ml-3">
-                      <p className="font-medium">Kalana Perera</p>
-                      <p className="text-sm opacity-75">Product Manager</p>
+                      <p className="font-medium">Alex Smith</p>
+                      <p className="text-sm opacity-75">Graduate Student</p>
                     </div>
                   </div>
                 </div>

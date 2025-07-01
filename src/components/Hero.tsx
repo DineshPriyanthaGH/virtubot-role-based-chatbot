@@ -21,7 +21,9 @@ export const Hero = () => {
           >
             <div className="flex items-center space-x-2">
               <MessageCircleIcon className="w-5 h-5" />
-              <span className="font-medium">Introducing VirtuBot</span>
+              <span className="font-medium">
+                Introducing VirtuBot-Psychology Counselor
+              </span>
             </div>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6">
@@ -44,9 +46,7 @@ export const Hero = () => {
               animationFillMode: 'forwards',
             }}
           >
-            Talk to an AI assistant, get personalized advice, and explore
-            learning opportunities! Available whenever you need guidance,
-            answers, or just a conversation.
+            Talk to VirtuBot, your AI health psychology counselor. Get personalized advice, compassionate guidance, and explore mental wellness resources. Available whenever you need support or just someone to listen.
           </p>
           <div
             className="flex flex-col sm:flex-row justify-center gap-4 opacity-0 animate-fade-in"
@@ -54,14 +54,15 @@ export const Hero = () => {
               animationDelay: '1s',
               animationFillMode: 'forwards',
             }}
-          ><a href="/sign-in">
-            <Button
-              primary
-              className="flex items-center justify-center gap-2 text-lg px-8 py-4"
-            >
-              Get Started
-              <ArrowRightIcon className="w-5 h-5 ml-1 transition-transform group-hover:translate-x-1" />
-            </Button>
+          >
+            <a href="/sign-in">
+              <Button
+                primary
+                className="flex items-center justify-center gap-2 text-lg px-8 py-4"
+              >
+                Get Started
+                <ArrowRightIcon className="w-5 h-5 ml-1 transition-transform group-hover:translate-x-1" />
+              </Button>
             </a>
             <Button className="text-lg px-8 py-4">Learn More</Button>
           </div>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { ClockIcon, MessageSquareIcon, UserIcon, ZapIcon } from 'lucide-react'
+
 interface FeatureCardProps {
   icon: React.ReactNode
   title: string
   description: string
   delay?: number
 }
+
 const FeatureCard: React.FC<FeatureCardProps> = ({
   icon,
   title,
@@ -15,6 +17,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   const [isHovered, setIsHovered] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -37,15 +40,20 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       }
     }
   }, [delay])
+
   return (
     <div
       ref={cardRef}
-      className={`bg-white rounded-xl shadow-sm border border-gray-100 p-6 transition-all duration-500 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} ${isHovered ? 'shadow-lg scale-105' : ''}`}
+      className={`bg-white rounded-xl shadow-sm border border-gray-100 p-6 transition-all duration-500 transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      } ${isHovered ? 'shadow-lg scale-105' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 ${isHovered ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-600'}`}
+        className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 ${
+          isHovered ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-600'
+        }`}
       >
         {icon}
       </div>
@@ -66,6 +74,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     </div>
   )
 }
+
 export const Features = () => {
   return (
     <section className="py-24 bg-gradient-to-b from-white to-indigo-50 px-4 sm:px-6 lg:px-8">
@@ -75,33 +84,32 @@ export const Features = () => {
             Discover VirtuBot's Capabilities
           </h2>
           <p className="max-w-2xl mx-auto text-xl text-gray-600">
-            Intelligent assistance that adapts to your needs and provides
-            personalized support.
+            Compassionate, personalized, and confidential support for your mental well-being.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <FeatureCard
             icon={<ZapIcon className="w-6 h-6" />}
-            title="Real-time Responses"
-            description="Get instant answers to your questions with our advanced AI that processes and responds in real-time."
+            title="Compassionate Guidance"
+            description="VirtuBot offers empathetic and understanding support tailored to your emotional needs."
             delay={100}
           />
           <FeatureCard
             icon={<UserIcon className="w-6 h-6" />}
-            title="Personalized Conversations"
-            description="VirtuBot learns from your interactions to provide increasingly personalized assistance tailored to your needs."
+            title="Personalized Support"
+            description="Learn from your unique experiences and receive advice that evolves with you."
             delay={300}
           />
           <FeatureCard
             icon={<ClockIcon className="w-6 h-6" />}
             title="Available 24/7"
-            description="Access help whenever you need it. VirtuBot is always online and ready to assist you any time of day."
+            description="Access mental health assistance anytime, whenever you need a caring listener."
             delay={500}
           />
           <FeatureCard
             icon={<MessageSquareIcon className="w-6 h-6" />}
             title="Multi-topic Expertise"
-            description="From academic help to career advice, VirtuBot can assist with a wide range of topics and questions."
+            description="From anxiety management to lifestyle advice, VirtuBot helps you across many areas."
             delay={700}
           />
           <FeatureCard
@@ -121,8 +129,8 @@ export const Features = () => {
                 />
               </svg>
             }
-            title="Secure Conversations"
-            description="Your interactions are private and secure. We prioritize your data privacy and security at all times."
+            title="Confidential & Secure"
+            description="Your privacy matters. All conversations are confidential and securely handled."
             delay={900}
           />
           <FeatureCard
@@ -143,7 +151,7 @@ export const Features = () => {
               </svg>
             }
             title="Continuous Learning"
-            description="VirtuBot improves with every interaction, constantly expanding its knowledge base to serve you better."
+            description="VirtuBot grows with you, improving its understanding and recommendations."
             delay={1100}
           />
         </div>
